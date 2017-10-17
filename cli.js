@@ -71,21 +71,19 @@ rl.on('line', function(line){
         ok(request);
     } else if (request.method === 'linkfs') {
         var rewrites = request.rewrites;
-        unionfs
-            .use(linkfs(fs,rewrites))
+        unionfs.ufs
+            .use(linkfs.link(fs,rewrites))
             .replace(fs);
         ok(request);
     } else if (request.method === 'version') {
         response(request, process.version);
     } else if (request.method === 'load') {
-        const p = path.normalize(__dirname + "/node_modules/"+request.module + "loader.js");
 
         try {
-            fs.accessSync(p)
             try {
-                loaders.push( require(p) );
+                loaders.push( require(request.module) );
             } catch(e) {
-                console.error( p+" could not be loaded");
+                console.error( `${e} could not be loaded`);
                 console.error( e );
             }
         } catch(e) {

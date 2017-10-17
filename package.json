@@ -7,9 +7,8 @@
     "unionfs": "^2.0.3"
   },
   "name": "mega-system",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "cli.js",
-  "devDependencies": {},
   "author": "Min Idzelis (midzelis@salesforce.com)",
   "license": "MIT"
 }
