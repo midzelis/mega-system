@@ -3,11 +3,12 @@
     "registry": "https://nexus.soma.salesforce.com/nexus/content/repositories/npmjs-internal/"
   },
   "dependencies": {
+    "fs-monkey": "^0.2.1",
     "linkfs": "^2.0.0",
     "unionfs": "^2.0.3"
   },
   "name": "mega-system",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "cli.js",
   "author": "Min Idzelis (midzelis@salesforce.com)",
   "license": "MIT"

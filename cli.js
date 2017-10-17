@@ -2,6 +2,7 @@ var loaders = [];
 
 const linkfs = require('linkfs');
 const unionfs = require('unionfs');
+const monkey = require('fs-monkey');
 const readline = require('readline');
 const fs = require('fs');
 const path = require('path');
@@ -70,15 +71,14 @@ rl.on('line', function(line){
         }
         ok(request);
     } else if (request.method === 'linkfs') {
-        var rewrites = request.rewrites;
-        unionfs.ufs
-            .use(linkfs.link(fs,rewrites))
-            .replace(fs);
+        const rewrites = request.rewrites;
+        const ufs = unionfs.ufs
+            .use(linkfs.link(fs,rewrites));
+        monkey.patchFs(ufs);
         ok(request);
     } else if (request.method === 'version') {
         response(request, process.version);
     } else if (request.method === 'load') {
-
         try {
             try {
                 loaders.push( require(request.module) );
